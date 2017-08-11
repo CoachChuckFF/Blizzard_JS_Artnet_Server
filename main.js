@@ -13,7 +13,12 @@ exports.openWindow = () => {
 }
 
 var Artnet = require('./artnet')
-
-
+console.log(Artnet.getNodeList())
 setInterval(Artnet.sendPoll, 7000)
 /* Artnet Information End */
+
+setInterval(play, 500)
+
+function play() {
+  console.log(Artnet.getNodeList());
+}

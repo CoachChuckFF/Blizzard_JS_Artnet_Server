@@ -18,6 +18,10 @@ const DP_VOLATILE = 0xF0
 const OP_CODE_POLL = 0x2000
 const OP_CODE_POLL_REPLY = 0x2100
 
+var node_list = new Array()
+var node = {ip: '0.0.0.0', name: 'example'};
+node_list.push(node)
+
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 
@@ -56,12 +60,28 @@ parsePacket = function (msg) {
       return op_code
     break
     case OP_CODE_POLL_REPLY:
-      console.log("POLL REPLY!")
+      parsePollReplyPacket(msg)
     break
     default:
       console.log("Error: op code = " + op_code)
   }
 
+}
+
+function parsePollReplyPacket(msg){
+  var ip = Buffer.alloc(4)
+  var name = Buffer.alloc(18)
+
+  for (var entry of node_list.entries()){
+    if(entry.ip == ip.toString())
+      return;
+  }
+
+  node_list.push({ip:ip.toString(), name:name.toString()})
+}
+
+exports.getNodeList = function (){
+  return node_list
 }
 
 exports.sendPoll = function (){
@@ -77,6 +97,7 @@ exports.sendPoll = function (){
 
   server.setBroadcast(true)
 
+  console.log(this.name)
 
   server.send(msg, ARTNET_PORT, "255.255.255.255")
 }
