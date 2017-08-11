@@ -1,0 +1,24 @@
+{
+  "name": "blizzard-dia",
+  "version": "0.0.1",
+  "description": "Blizzard Diagnostics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheOnlyCaky/blizzard_dia.git"
+  },
+  "keywords": [
+    "diagnostics",
+    "blizzard",
+    "lights"
+  ],
+  "author": "Christian Krueger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheOnlyCaky/blizzard_dia/issues"
+  },
+  "homepage": "https://github.com/TheOnlyCaky/blizzard_dia#readme"
+}
